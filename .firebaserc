@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "rugbyrec-app": {
+      "hosting": {
+        "bathRugbyRec": [
+          "rugbyrec-app"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "rugbyrec-app"
+  }
+}
