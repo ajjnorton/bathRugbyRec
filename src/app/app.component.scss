@@ -1,0 +1,18 @@
+.slideshow-container .mySlides img {
+   
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .slideshow-container {
+    max-width: 1000px;
+    margin: auto;
+  }
+  
+  .slideshow-container .mySlides {
+    margin: 0px auto;
+    width: 100%;
+    text-align: center;
+  height: 50vh;
+  }
+
