@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { ImageService } from '../services/image.service';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 
 @Component({
   selector: 'app-home',
@@ -26,19 +28,23 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private firestore: AngularFirestore,
+    private storage: AngularFireStorage,
+    private imageService: ImageService,
     private router: Router
   ) { }
 
 
- 
+
 
   ngOnInit(): void {
-    this.path = "/src/assets/images/";
+    //this.path = "/src/assets/images/";
 
     this.items = this.firestore.collection('catalog2', ref => ref.where("orientation", "==", "landscape")).valueChanges();
     this.items.subscribe((data: any) => {
       this.pictures = data;
-      this.generatePaths()
+      console.log(data)
+      console.log(data.length)
+      this.getPictures()
     })
 
   }
@@ -48,11 +54,15 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['catalog'])
   }
 
-  generatePaths() {
+  getPictures() {
 
     this.pictures.forEach(picture => {
       const img = picture.imgPath;
-      picture.imgPath = '../assets/images/' + img;
+      const ref = this.storage.ref(img)
+      return ref.getDownloadURL().subscribe(url => {
+        console.log(url)
+        picture.url=url
+      })
     });
   }
 
