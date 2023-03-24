@@ -20,20 +20,24 @@
 <div class="uk-container">
     <form class="example-form">
         <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Player Search</mat-label>
-          <input type="text" matInput  [matAutocomplete]="auto">
-          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-              {{option.name}}
-            </mat-option>
-          </mat-autocomplete>
+            <mat-label>Player Search</mat-label>
+            <input type="text" matInput [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                    {{option.name}}
+                </mat-option>
+            </mat-autocomplete>
         </mat-form-field>
-      </form>
+    </form>
 
     <div class="img-container ">
-        <div  *ngFor="let picture of pictures">
-            <div class="img" *ngIf="picture.url && picture.imgPath" >
-                <img src="{{picture.url}}" alt="">
+        <div *ngFor="let picture of pictures">
+            <div class="img" *ngIf="picture.url && picture.imgPath">
+                <div uk-lightbox>
+                    <a class="uk-inline" href="{{picture.url}}" >
+                        <img src="{{picture.url}}"  alt="">
+                    </a>
+                </div>
                 <br>
                 <small style="overflow:hidden">{{picture.id}}</small>
             </div>
