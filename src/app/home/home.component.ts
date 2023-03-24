@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit {
 
 
   goto(page) {
-    this.router.navigate(['catalog'])
+    this.router.navigate([page])
   }
 
   getPictures() {
