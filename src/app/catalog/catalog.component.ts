@@ -35,7 +35,7 @@ export class CatalogComponent implements OnInit{
   }
 
   getCollection() {
-    this.items = this.firestore.collection('catalog2').valueChanges();
+    this.items = this.firestore.collection('catalog2',ref => ref.limit(100)).valueChanges();
     this.items.subscribe((data: any) => {
       this.pictures = data;
       console.log(data)

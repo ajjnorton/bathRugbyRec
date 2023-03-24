@@ -18,23 +18,16 @@
     </div>
 </nav>
 <div class="uk-container">
-<div class="uk-child-width-1-4@s uk-grid-collapse " uk-grid>
-    <div *ngFor="let picture of pictures">
-
-     
-            <div>
-                <div class="uk-card uk-card-default" style="max-height:200px;">
-                    <div class="uk-card-media-top">
-                        <img src="{{picture.url}}" height="200" alt="">
-                    </div>
-                    <div class="uk-card-body">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
-                        </p>
-                    </div>
-                </div>
+    <div class="img-container ">
+        <div  *ngFor="let picture of pictures">
+            <div class="img">
+                <img *ngIf="picture.url" src="{{picture.url}}" alt="">
             </div>
-       
-    </div>
 
-</div>
+
+
+
+        </div>
+
+    </div>
 </div>
