@@ -4,12 +4,24 @@ import { Router } from '@angular/router';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+
+    
+
 
 
 @Component({
   selector: 'app-catalog',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    MatInputModule,
+
+  ],
   templateUrl: './catalog.component.html',
   styleUrls: ['./catalog.component.scss']
 })
@@ -19,6 +31,7 @@ export class CatalogComponent implements OnInit{
   items: Observable<any[]>;
   private itemsCollection: AngularFirestoreCollection<any>;
   pictures: any[] = []
+  filteredOptions: Observable<any[]>;
 
   constructor(
     private router: Router,
@@ -35,7 +48,7 @@ export class CatalogComponent implements OnInit{
   }
 
   getCollection() {
-    this.items = this.firestore.collection('catalog2',ref => ref.limit(100)).valueChanges();
+    this.items = this.firestore.collection('catalog2',ref => ref.limit(200)).valueChanges();
     this.items.subscribe((data: any) => {
       this.pictures = data;
       console.log(data)
@@ -56,6 +69,10 @@ export class CatalogComponent implements OnInit{
         picture.url=url
       })
     });
+  }
+
+  displayFn(user: any): string {
+    return user && user.name ? user.name : '';
   }
 
 
