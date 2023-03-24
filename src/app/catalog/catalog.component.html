@@ -18,10 +18,11 @@
     </div>
 </nav>
 <div class="uk-container">
-    <form class="example-form">
+
+    <form class="example-form" style="text-align:center; margin:40px;">
         <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Player Search</mat-label>
-            <input type="text" matInput [matAutocomplete]="auto">
+            <mat-label>Player search</mat-label>
+            <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
             <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
                 <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
                     {{option.name}}
@@ -34,8 +35,8 @@
         <div *ngFor="let picture of pictures">
             <div class="img" *ngIf="picture.url && picture.imgPath">
                 <div uk-lightbox>
-                    <a class="uk-inline" href="{{picture.url}}" >
-                        <img src="{{picture.url}}"  alt="">
+                    <a class="uk-inline" href="{{picture.url}}">
+                        <img src="{{picture.url}}" alt="">
                     </a>
                 </div>
                 <p style="margin:0px; font-size:12px; text-align:center; margin-top:10px;">{{picture.player}}</p>
