@@ -22,6 +22,7 @@
         <div  *ngFor="let picture of pictures">
             <div class="img" *ngIf="picture.url && picture.imgPath" >
                 <img src="{{picture.url}}" alt="">
+                <br>
                 <small style="overflow:hidden">{{picture.id}}</small>
             </div>
 
