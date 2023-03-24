@@ -1,1 +1,40 @@
-<p>catalog works!</p>
+<nav class="uk-navbar-container uk-margin" uk-navbar>
+    <div class="uk-navbar-center">
+
+        <div class="uk-navbar-center-left">
+            <ul class="uk-navbar-nav">
+                <li class="uk-active"><a href="#">Home</a></li>
+                <li class="uk-active" (click)="goto('catalog')"><a>Catalogue</a></li>
+            </ul>
+        </div>
+        <a class="uk-navbar-item uk-logo" href="#">BATH RUGBYREC</a>
+        <div class="uk-navbar-center-right">
+            <ul class="uk-navbar-nav">
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+
+    </div>
+</nav>
+<div class="uk-container">
+<div class="uk-child-width-1-4@s uk-grid-collapse " uk-grid>
+    <div *ngFor="let picture of pictures">
+
+     
+            <div>
+                <div class="uk-card uk-card-default" style="max-height:200px;">
+                    <div class="uk-card-media-top">
+                        <img src="{{picture.url}}" height="200" alt="">
+                    </div>
+                    <div class="uk-card-body">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+                        </p>
+                    </div>
+                </div>
+            </div>
+       
+    </div>
+
+</div>
+</div>
