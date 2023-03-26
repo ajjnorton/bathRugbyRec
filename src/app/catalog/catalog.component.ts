@@ -36,6 +36,7 @@ export class CatalogComponent implements OnInit {
   items: Observable<any[]>;
   private itemsCollection: AngularFirestoreCollection<any>;
   pictures: any[] = []
+  players:any[]=[];
   filteredOptions: Observable<any[]>;
   options: any[] = [{ name: 'Mary' }, { name: 'Shelley' }, { name: 'Igor' }];
   myControl = new FormControl<string | any>('');
@@ -67,6 +68,9 @@ export class CatalogComponent implements OnInit {
       this.pictures = data;
       console.log(data)
       console.log(data.length)
+      const players = data.map(item=>item.player)
+      this.players = this.removeDuplicates(players)
+      console.log(this.players)
       this.getPictures()
     })
   }
@@ -77,7 +81,9 @@ export class CatalogComponent implements OnInit {
     return this.options.filter(option => option.name.toLowerCase().includes(filterValue));
   }
 
-
+  removeDuplicates(values) {
+    return [...new Set(values)]
+  }
 
   getPictures() {
 
